@@ -1,8 +1,8 @@
-{{!-- <div class="index-container d-inline-flex p-2 bd-highlight">
+<div class="index-container d-inline-flex p-2 bd-highlight">
   <div class="sort-group">
     <select class="form-select" id="sort-select" name="sort">
       <option value="">All</option>
-      {{>category}}
+       {{> category}} 
     </select>
   </div>
 
@@ -13,58 +13,58 @@
   </script> }}
 
   <!-- index.hbs -->
-  <div>
-    <span value="totalAmount">總金額：</span>
-    <div class="card-area" style="width: 18rem;">
 
-      <ul class="list-group list-group-flush">
-        {{#each expenses}}
+</div>
+<div>
+  <span value="totalAmount">總金額：</span>
+  <div class="card-area mx-auto" style="width: 600px">
 
-          <li class="list-group-item">
-            <div class="row">
-              <div class="col-auto me-auto">
-
-                <div
-                  class="col-2 d-flex justify-content-center align-items-center"
-                >
-                  {{category.icon}}
-                </div>
-                <div
-                  class="col-2 d-flex justify-content-center align-items-center"
-                >
-                  {{this.name}}
-                </div>
-                <div
-                  class="col-2 d-flex justify-content-center align-items-center"
-                >
-                  {{this.date}}
-                </div>
-                <div
-                  class="col-2 d-flex justify-content-center align-items-center"
-                >
-                  ${{this.amount}}
-                </div>
-
+    <ul class="list-group list-group-flush">
+      {{#each expenseData}}
+        <li class="list-group-item">
+          <div class="row">
+            <div class="col-auto me-auto">
+              <div
+                class="col-12 d-flex justify-content-center align-items-center"
+              >
+              {{this.categoryId}}
+                <i class="{{this.categoryId.icon}}"></i> 
+                {{!-- <span>{{add_icon 5 9}}</span> --}}
               </div>
-              <div class="col-auto">
-                <a
-                  class="btn btn-success"
-                  href="./expense/{{this._id}}/edit"
-                >修改</a>
-                <form
-                  action="./expense/{{this._id}}?_method=DELETE"
-                  method="POST"
-                  style="display: inline;"
-                >
-                  <button class="btn btn-danger" type="submit">刪除</button>
-                </form>
+              <div
+                class="col-12 d-flex justify-content-center align-items-center"
+              >
+                {{this.name}}
               </div>
+              <div
+                class="col-12 d-flex justify-content-center align-items-center"
+              >
+                {{this.date}}
+              </div>
+              <div
+                class="col-12 d-flex justify-content-center align-items-center"
+              >
+                ${{this.amount}}
+              </div>
+
             </div>
-          </li>
-        {{/each}}
-      </ul>
-    </div>
-    <a class="btn btn-primary mb-3" href="/expense/new">新增支出</a>
+            <div class="col-auto">
+              <a
+                class="btn btn-success"
+                href="./expense/{{this._id}}/edit"
+              >修改</a>
+              <form
+                action="./expense/{{this._id}}?_method=DELETE"
+                method="POST"
+                style="display: inline;"
+              >
+                <button class="btn btn-danger" type="submit">刪除</button>
+              </form>
+            </div>
+          </div>
+        </li>
+      {{/each}}
+    </ul>
   </div>
-</div> --}}
-<h3>Index.hbs畫面渲染</h3>
+  <a class="btn btn-primary mb-3" href="/expense/new">新增支出</a>
+</div>
