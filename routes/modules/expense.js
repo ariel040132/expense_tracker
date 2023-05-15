@@ -33,7 +33,7 @@ router.get("/:id/edit", (req, res) => {
     .then((category) => {
       return Expense.findOne({ _id })
         .lean()
-        .then((expenses) => res.render("edit", { expenses, category }));
+        .then((expense) => res.render("edit", { expense, category }));
     });
 });
 router.put("/:id", (req, res) => {
@@ -47,5 +47,19 @@ router.put("/:id", (req, res) => {
     })
     .catch((err) => console.log(err));
 });
+
+//! 刪除功能
+router.delete("/:id", (req, res) => {
+  const _id = req.params.id;
+  return Expense.findOne({ _id })
+    .then((expense) => {
+      expense.remove();
+    })
+    .then(() => {
+      res.redirect("/");
+    })
+    .catch((error) => console.log(error));
+});
+
 //*底部
 module.exports = router;
