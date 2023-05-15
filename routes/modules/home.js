@@ -5,7 +5,6 @@ const Category = require("../../models/category");
 
 router.get("/", (req, res) => {
   //const userId = req.user._id;
-
   Category.find()
     .lean()
     .then((category) => {
@@ -14,7 +13,7 @@ router.get("/", (req, res) => {
         .lean()
         .sort({ _id: "asc" })
         .then((expenseData) => {
-          console.log("expenseData:", expenseData);
+          //console.log("expenseData:", expenseData);
           res.render("index", { expenseData, category });
         })
         .catch((err) => console.log(err));
