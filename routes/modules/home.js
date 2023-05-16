@@ -4,11 +4,11 @@ const Expense = require("../../models/expense");
 const Category = require("../../models/category");
 
 router.get("/", (req, res) => {
-  //const userId = req.user._id;
-  Category.find()
+  const userId = req.user._id;
+  Category.find({})
     .lean()
     .then((category) => {
-      Expense.find({})
+      Expense.find({ userId })
         .populate("categoryId")
         .lean()
         .sort({ _id: "asc" })
@@ -27,13 +27,14 @@ router.get("/", (req, res) => {
 
 router.post("/", (req, res) => {
   const { categoryId } = req.body;
+  const userId = req.user._id;
   if (categoryId === "all") {
     return res.redirect("/");
   }
   return Category.find()
     .lean()
     .then((category) => {
-      return Expense.find({ categoryId })
+      return Expense.find({ userId, categoryId })
         .populate("categoryId")
         .lean()
         .sort({ date: "desc" })
