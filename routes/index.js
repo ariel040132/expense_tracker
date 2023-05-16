@@ -9,7 +9,7 @@ const auth = require("./modules/auth");
 
 router.use("/expense", authenticator, expense); //authenticator
 router.use("/users", users);
-// router.use("/auth", auth);
+router.use("/auth", auth);
 router.use("/", authenticator, home); //authenticator
 
 module.exports = router;
