@@ -1,6 +1,6 @@
 const express = require("express");
 const exphbs = require("express-handlebars");
-const port = process.env.PORT;
+const port = process.env.PORT || 3000;
 const routes = require("./routes");
 const methodOverride = require("method-override");
 const session = require("express-session");
